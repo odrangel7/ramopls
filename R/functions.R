@@ -1271,9 +1271,9 @@ run_AMOPLS <- function(datamatrix,
       } else {requireNamespace("furrr")}
 
       if (is.numeric(parallel)) {
-        future::plan(future::multiprocess, workers = parallel)
+        future::plan(future::multisession, workers = parallel)
       } else {
-        future::plan(future::multiprocess, workers = (length(future::availableWorkers()) - 1))
+        future::plan(future::multisession, workers = (length(future::availableWorkers()) - 1))
       }
 
       temp <- furrr::future_map(1:apply_it, function(x) {
